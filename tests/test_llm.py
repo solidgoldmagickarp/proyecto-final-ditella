@@ -12,7 +12,7 @@ class Servidor:
     def __init__(self):
         self.recibidos = []
         self.respuesta = (200, {"message": {"role": "assistant", "content": "hola"},
-                                "prompt_eval_count": 12, "eval_count": 3})
+                                "prompt_eval_count": 12, "eval_count": 3, "done_reason": "stop"})
         servidor = self
 
         class Manejador(BaseHTTPRequestHandler):
@@ -112,3 +112,16 @@ def test_host_con_y_sin_esquema(monkeypatch):
 def test_digest_del_modelo_descargado(servidor):
     assert llm.digest("qwen3:8b") == "500a1f067a9f"
     assert llm.digest("qwen3:4b") is None
+
+
+def test_devuelve_la_razon_de_fin_que_informa_el_servidor(servidor):
+    assert llm.chat([], modelo="qwen3:8b", num_ctx=4096).razon_fin == "stop"
+    servidor.respuesta = (200, {"message": {"role": "assistant", "content": "cortado"},
+                                "prompt_eval_count": 12, "eval_count": 800, "done_reason": "length"})
+    assert llm.chat([], modelo="qwen3:8b", num_ctx=4096).razon_fin == "length"
+
+
+def test_sin_done_reason_la_razon_de_fin_es_none(servidor):
+    servidor.respuesta = (200, {"message": {"role": "assistant", "content": "x"},
+                                "prompt_eval_count": 1, "eval_count": 1})
+    assert llm.chat([], modelo="qwen3:8b", num_ctx=4096).razon_fin is None

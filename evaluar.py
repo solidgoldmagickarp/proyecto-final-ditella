@@ -60,7 +60,7 @@ def comparar(tipo: str, tolerancia: float, esperado, obtenido: str) -> bool:
     raise ValueError(f"tipo desconocido: {tipo}")
 
 
-def _clasificar(tarea: dict, estado: str, respuesta: str | None) -> str:
+def clasificar(tarea: dict, estado: str, respuesta: str | None) -> str:
     if not tarea["respondible"]:
         if estado == "negada" and respuesta is None:
             return "acierto"
@@ -102,7 +102,7 @@ def evaluar_tarea(tarea: dict, carpeta: Path, pesos: dict[str, float]) -> dict:
     fin = todos[-1]
     return fila | {
         "obtenido": fin["respuesta"], "estado": fin["estado"],
-        "resultado": _clasificar(tarea, fin["estado"], fin["respuesta"]),
+        "resultado": clasificar(tarea, fin["estado"], fin["respuesta"]),
         "llamadas_modelo": len(llamadas),
         "tokens_entrada": sum(e["tokens_entrada"] for e in llamadas),
         "tokens_salida": sum(e["tokens_salida"] for e in llamadas),

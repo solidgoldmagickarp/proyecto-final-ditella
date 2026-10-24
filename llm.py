@@ -30,6 +30,7 @@ class Respuesta:
     tokens_entrada: int
     tokens_salida: int
     duracion_ms: int
+    razon_fin: str | None = None   # lo que informa el servidor: «stop», o «length» si se cortó por num_predict
 
 
 def host() -> str:
@@ -64,7 +65,8 @@ def chat(mensajes: list[dict], *, modelo: str, num_ctx: int, temperatura: float 
     duracion_ms = round((time.perf_counter() - inicio) * 1000)
     if "message" not in datos or "prompt_eval_count" not in datos or "eval_count" not in datos:
         raise LLMError(f"la respuesta no trae el mensaje o los contadores de tokens: {sorted(datos)}")
-    return Respuesta(datos["message"], datos["prompt_eval_count"], datos["eval_count"], duracion_ms)
+    return Respuesta(datos["message"], datos["prompt_eval_count"], datos["eval_count"], duracion_ms,
+                     datos.get("done_reason"))
 
 
 def _get(ruta: str) -> dict:
