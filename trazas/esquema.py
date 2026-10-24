@@ -1,4 +1,4 @@
-"""Validador del esquema de trazas (contrato_kit.md, sección 5).
+"""Validador del esquema de trazas (sección 7 del enunciado, ENUNCIADO.md).
 
 Una traza es un archivo JSONL con un evento por línea. `validar_archivo` devuelve la lista de
 problemas; vacía quiere decir que la traza es válida. Los eventos y campos que no están en la tabla

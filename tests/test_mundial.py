@@ -1,4 +1,4 @@
-"""Las herramientas del Mundial contra cifras verificadas en los datos (ver contrato_kit.md, sección 6)."""
+"""Las herramientas del Mundial contra cifras verificadas en los datos."""
 import datetime as dt
 
 import pytest
