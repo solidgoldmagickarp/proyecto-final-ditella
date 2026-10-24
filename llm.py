@@ -54,12 +54,15 @@ def _post(ruta: str, cuerpo: dict, timeout_s: float) -> dict:
 
 def chat(mensajes: list[dict], *, modelo: str, num_ctx: int, temperatura: float = 0, semilla: int = 1337,
          think: bool = False, num_predict: int = 800, herramientas: list[dict] | None = None,
-         timeout_s: float = 300) -> Respuesta:
+         formato: dict | None = None, timeout_s: float = 300) -> Respuesta:
+    """`formato` es un esquema JSON: el servidor restringe la salida para que lo cumpla."""
     cuerpo = {"model": modelo, "messages": mensajes, "stream": False, "think": think, "truncate": False,
               "options": {"num_ctx": num_ctx, "temperature": temperatura, "seed": semilla,
                           "num_predict": num_predict}}
     if herramientas:
         cuerpo["tools"] = herramientas
+    if formato:
+        cuerpo["format"] = formato
     inicio = time.perf_counter()
     datos = _post("/api/chat", cuerpo, timeout_s)
     duracion_ms = round((time.perf_counter() - inicio) * 1000)

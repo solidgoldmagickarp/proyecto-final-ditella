@@ -17,7 +17,7 @@ El enunciado dice qué se construye y cómo se evalúa. Este README dice cómo p
 | [agente.py](agente.py) | **Tu loop.** Lee la configuración, abre la traza y llama a `bucle`, que está sin implementar |
 | [config.toml](config.toml) | El modelo, `num_ctx`, los topes y el recorte de resultados. Se copia entera en cada traza |
 | `herramientas/mundial.py` | Las seis herramientas del Mundial sobre SQLite, sus esquemas JSON (`FICHAS`) y `terminar` |
-| `llm.py` | Una llamada a Ollama por la API nativa. Manda `num_ctx` siempre y no reintenta: eso es tuyo |
+| `llm.py` | Una llamada a Ollama por la API nativa. Manda `num_ctx` siempre, puede restringir la salida a un esquema JSON (`formato`) y no reintenta: eso es tuyo |
 | `datos/descargar.py` | Baja los CSV de la *Fjelstul World Cup Database* (commit fijado) y arma la base SQLite |
 | `tareas/mundial_publicas.json` | 30 tareas del Mundial, con su respuesta |
 | `tareas/verificadores.py` | Recalcula cada respuesta con SQL, sin pasar por el modelo ni por las herramientas |
@@ -87,6 +87,9 @@ Antes de implementar `bucle`, corré `correr_todas.py` y `evaluar.py`: el esquel
   con OpenAI no permite fijar `num_ctx`: usá la API nativa.
 - **Las tareas públicas traen la respuesta.** Sirven para medir tu loop, no para copiarlas. En la
   presentación se te pide una tarea que no ensayaste.
+- **Los modelos chicos a veces escriben la llamada a `terminar` como texto**, por ejemplo `terminar("12", "...")`.
+  Ollama no la reconoce como una llamada, y tu loop se queda sin respuesta aunque el modelo la tenía.
+  Qué hacer en ese caso lo decidís vos: aparece en las trazas como una respuesta del modelo sin llamadas.
 - **Una traza inválida o ausente no suma aciertos.** `evaluar.py` valida cada traza con
   `trazas/esquema.py` antes de leerla.
 - **Los nombres de jugadores pueden ser ambiguos.** `goles("Ronaldo")` devuelve candidatos con su `id`;

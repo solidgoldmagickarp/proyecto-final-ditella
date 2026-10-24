@@ -125,3 +125,11 @@ def test_sin_done_reason_la_razon_de_fin_es_none(servidor):
     servidor.respuesta = (200, {"message": {"role": "assistant", "content": "x"},
                                 "prompt_eval_count": 1, "eval_count": 1})
     assert llm.chat([], modelo="qwen3:8b", num_ctx=4096).razon_fin is None
+
+
+def test_manda_el_esquema_de_salida_solo_cuando_se_pide(servidor):
+    esquema = {"type": "object", "properties": {"respuesta": {"type": "string"}}, "required": ["respuesta"]}
+    llm.chat([], modelo="qwen3:8b", num_ctx=4096)
+    llm.chat([], modelo="qwen3:8b", num_ctx=4096, formato=esquema)
+    sin, con = servidor.recibidos[-2:]
+    assert "format" not in sin and con["format"] == esquema
