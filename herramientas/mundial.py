@@ -187,7 +187,7 @@ def goles(jugador: str, torneo: int | None = None):
         candidatos = [_ficha_jugador(j) for j in encontrados[:MAX_COINCIDENCIAS]]
         if len(encontrados) > MAX_COINCIDENCIAS:
             candidatos.append(_aviso_de_recorte(len(encontrados)))
-        return {"error": "ambiguo: hay más de un jugador con ese nombre.", "candidatos": candidatos}
+        return {"error": "ambiguo: hay más de un jugador con ese nombre. Volvé a llamar a goles con el id del que corresponda (por ejemplo P-12345), escrito en el parámetro `jugador`.", "candidatos": candidatos}
     elegido = encontrados[0]
     if torneo is None:
         filas = _sql(

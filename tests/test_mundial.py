@@ -212,3 +212,8 @@ def test_buscar_jugador_devuelve_el_id(herramientas_con_db):
     [kempes] = herramientas_con_db.buscar_jugador("Kempes")
     assert kempes["id"] == "P-35082"
     assert herramientas_con_db.buscar_jugador("P-35082")[0]["jugador"] == "Mario Kempes"
+
+
+def test_el_error_de_ambiguedad_dice_como_resolverlo(herramientas_con_db):
+    error = herramientas_con_db.goles("Ronaldo")["error"]
+    assert "id" in error and "`jugador`" in error
