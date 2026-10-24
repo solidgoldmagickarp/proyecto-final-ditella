@@ -4,6 +4,5 @@ __pycache__/
 datos/csv/
 datos/worldcup.sqlite
 datos/worldcup.parcial
-trazas/*/
 resultados/*.png
 trazas/*.toml
