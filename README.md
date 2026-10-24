@@ -49,9 +49,10 @@ Los tiempos que reportes se miden ahí. Abrí [colab/arranque.ipynb](colab/arran
 T4 **antes** de correr nada (cambiarla después reemplaza la máquina) y seguí las celdas en orden.
 Desde VS Code: *Select Kernel → Colab → New Colab Server* y elegí la T4.
 
-Tu código tiene que llegar a Colab: hacé un fork de este repositorio y poné su URL en la primera
-celda. Un fork de un repositorio público es público: para que tu trabajo sea privado, creá un
-repositorio privado nuevo y subile una copia de este.
+Tu código tiene que llegar a Colab. Creá tu repositorio con el botón **Use this template** de este
+repositorio en GitHub (*Create a new repository*) y elegí la visibilidad **Private**. Poné su URL en la
+primera celda: como es privado, la URL lleva un token de lectura, y el cuaderno explica cómo. No hagas
+un fork: un fork de un repositorio público es público.
 
 El disco de Colab se borra cuando se desconecta la máquina (unos 90 minutos inactiva, 12 horas como
 máximo). Tus trazas y resultados tienen que salir de ahí antes: commiteá o copiá `trazas/` y
