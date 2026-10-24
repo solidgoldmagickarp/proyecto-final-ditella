@@ -20,7 +20,7 @@ from trazas import esquema
 
 RAIZ = Path(__file__).resolve().parent
 TAREAS = RAIZ / "tareas" / "mundial_publicas.json"
-PESOS = {"qwen3:8b": 1.0, "qwen3:4b": 0.5, "qwen3:1.7b": 0.2}
+PESOS = {"qwen3:8b": 1.0, "qwen3:4b-instruct": 0.5, "qwen3:4b": 0.5, "qwen3:1.7b": 0.2}
 NUMERO = re.compile(r"[+-]?\d+(\.\d+)?")
 COLUMNAS = ["tarea", "dificultad", "respondible", "esperado", "obtenido", "estado", "resultado", "detalle",
             "llamadas_modelo", "tokens_entrada", "tokens_salida", "costo", "tiempo_s", "tiempo_modelo_s"]

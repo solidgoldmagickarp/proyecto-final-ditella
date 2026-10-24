@@ -160,3 +160,9 @@ def test_corrida_con_todo_mal_sobre_las_tareas_publicas_reales(tmp_path):
         traza(tmp_path, tarea["id"], respuesta="no tengo idea")
     _, resumen = evaluar.evaluar(tareas, tmp_path, evaluar.PESOS)
     assert resumen["aciertos"] == 0
+
+
+def test_el_modelo_de_4b_sin_razonamiento_pesa_como_el_de_4b(tmp_path):
+    traza(tmp_path, "a", respuesta="23", modelo="qwen3:4b-instruct", llamadas=((1000, 100),))
+    filas, _ = evaluar.evaluar([_tarea("a", respuesta=23)], tmp_path, evaluar.PESOS)
+    assert filas[0]["costo"] == 550.0
