@@ -8,7 +8,7 @@ esqueleto de un agente que todavía no responde nada. **Lo que falta es el loop*
 de [agente.py](agente.py) es tu trabajo. El resto es plomería: mueve datos, valida trazas y habla con
 el servidor; ninguna pieza toma una decisión de diseño por vos.
 
-El enunciado dice qué se construye y cómo se evalúa. Este README dice cómo poner en marcha el kit.
+El [enunciado](ENUNCIADO.md) dice qué se construye y cómo se evalúa. Este README dice cómo poner en marcha el kit.
 
 ## Qué hay acá
 
