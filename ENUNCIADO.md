@@ -10,7 +10,8 @@ presentación oral en una fecha a definir, después de la última clase.
 >
 > El **kit inicial** (herramientas, tareas públicas, evaluador y el esqueleto del agente) está en
 > <https://github.com/solidgoldmagickarp/proyecto-final-ditella>. Para empezar, creá tu repositorio
-> **privado** desde esa plantilla (*Use this template*); la sección 6 dice qué trae.
+> **privado** desde esa plantilla (*Use this template*); la sección 6 dice qué trae y el `README.md` del
+> kit explica el primer día paso a paso.
 
 ---
 

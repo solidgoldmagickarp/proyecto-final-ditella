@@ -27,6 +27,31 @@ El [enunciado](ENUNCIADO.md) dice qué se construye y cómo se evalúa. Este REA
 | `trazas/esquema.py`, `trazas/registro.py` | El validador del esquema de trazas y el escritor que usan todos |
 | `colab/arranque.ipynb` | Deja Ollama, el modelo y los datos listos en una T4 de Colab |
 
+## Primer día, paso a paso
+
+1. **Creá tu repositorio.** En la página de este repositorio en GitHub, botón **Use this template** →
+   *Create a new repository*, con visibilidad **Private**. No hagas un fork: un fork de un repositorio
+   público es público.
+2. **Clonalo a tu máquina:** `git clone https://github.com/<usuario>/<repo>.git`. El loop lo escribís
+   ahí, en tu editor.
+3. **Abrí `colab/arranque.ipynb`**, de una de dos maneras:
+   - *En VS Code*, con la extensión de Colab: abrí la carpeta clonada y el cuaderno, y elegí
+     *Select Kernel → Colab → New Colab Server* y una **T4**.
+   - *En el sitio de Colab* (colab.research.google.com): *File → Upload notebook* y elegí
+     `colab/arranque.ipynb` de tu carpeta clonada; después *Runtime → Change runtime type* y una **T4**.
+
+   Elegí la T4 **antes** de correr nada: cambiarla después reemplaza la máquina.
+4. **Creá un token de GitHub** para que Colab pueda bajar y subir tu repositorio. La sección 1 del
+   cuaderno dice cómo (*Contents: Read and write*, solo tu repositorio, vencimiento corto). No lo pegues
+   en ningún archivo.
+5. **Corré las celdas en orden** (unos 10 minutos la primera vez). En la sección 1 poné tu usuario y el
+   nombre del repositorio; el token se pide al correr la celda y no queda en el cuaderno.
+6. **Ciclo de trabajo.** Escribís `bucle` en `agente.py`, hacés commit y push desde tu máquina, y en
+   Colab volvés a correr la celda de la sección 1 (hace `git pull`) y después `correr_todas.py` y
+   `evaluar.py`.
+7. **Guardá las trazas.** La sección 6 del cuaderno las sube a GitHub desde Colab (`git add`,
+   `git commit`, `git pull --rebase`, `git push`). En tu máquina, `git pull` las trae.
+
 ## Puesta en marcha
 
 ### Local
@@ -45,18 +70,12 @@ a herramientas y cuánto tarda cada una; si usás otra, decilo en tu informe.
 
 ### En Colab (la T4, el entorno de referencia)
 
-Los tiempos que reportes se miden ahí. Abrí [colab/arranque.ipynb](colab/arranque.ipynb), elegí una GPU
-T4 **antes** de correr nada (cambiarla después reemplaza la máquina) y seguí las celdas en orden.
-Desde VS Code: *Select Kernel → Colab → New Colab Server* y elegí la T4.
-
-Tu código tiene que llegar a Colab. Creá tu repositorio con el botón **Use this template** de este
-repositorio en GitHub (*Create a new repository*) y elegí la visibilidad **Private**. Poné su URL en la
-primera celda: como es privado, la URL lleva un token de lectura, y el cuaderno explica cómo. No hagas
-un fork: un fork de un repositorio público es público.
+Los tiempos que reportes se miden ahí. Los pasos están en «Primer día» (arriba) y en las secciones del
+cuaderno [colab/arranque.ipynb](colab/arranque.ipynb).
 
 El disco de Colab se borra cuando se desconecta la máquina (unos 90 minutos inactiva, 12 horas como
-máximo). Tus trazas y resultados tienen que salir de ahí antes: commiteá o copiá `trazas/` y
-`resultados/`. `correr_todas.py --reanudar` retoma una corrida sin repetir las tareas ya hechas.
+máximo). Tus trazas y resultados tienen que salir de ahí antes: la sección 6 del cuaderno los sube a tu
+repositorio. `correr_todas.py --reanudar` retoma una corrida sin repetir las tareas ya hechas.
 
 ## Cómo se usa
 
